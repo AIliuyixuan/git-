@@ -1,0 +1,294 @@
+1.进入要管理得文件夹
+2.初始化（提名）
+3.管理
+4.生成版本
+
+github密码：LHCDSHYLC731x@
+
+-----------------------------------------------------------------------------
+echo命令：
+
+第一种：
+echo 'i love u' >a.txt  *在a.txt这个文件中输入i love u，如果没有这个文件则创建。如果有这个文件，那么
+新内容代替原来的内容。
+第二种：
+
+echo 'i love u' >>a.txt  *在a.txt这个文件中输入i love u，如果没有这个文件则创建.如果有这个文件，那么
+新内容添加在原来内容的后面
+-----------------------------------------------------------------------------------------------------------------
+
+
+
+
+关掉 SSL 验证 git config --global http.sslVerify "false"
+
+
+
+
+本地库与远程库不一样时：git pull --rebase origin master
+
+该命令的意思是把远程库中的更新合并到（pull=fetch+merge）本地库中，
+–-rebase的作用是取消掉本地库中刚刚的commit，并把他们接到更新后的版本库之中。
+出现如下图执行pull执行成功后，可以成功执行git push origin master操作。
+
+------------------------------------------------------------------------------------------------
+1. 进入要管理的目录
+2.  git init    初始化，即：让git帮助我们管理当前文件夹
+3. git status 检测当前目录下文件的状态
+
+4. 三种状态的变化：
+   ~红色：新增的文件 / 修改了原来的老文件
+
+   ！！！ 红色如何变为绿色：1、 git add 文件名 (某个文件)  2、git add .  （所有文件）
+
+   ~绿色：git已经管理起来   
+ 
+
+0
+
+ 4.个人信息配置：用户名和邮箱
+
+ git config --global user.email '2587389510@qq.com'
+ git config --global user.name 'liuyixuan'
+
+
+  ~生成版本
+！！！git如何生成版本：git commit -m '描述信息'
+
+
+5.查看版本：
+   方法一：git log
+  方法二： git log --graph --pretty=format:"%h %s"
+
+
+
+--------------------------------------------------------------------------------------------------------
+git 回滚命令：
+  回滚之前版本：git reset --hard 版本号 (删除一个版本)
+  回滚之后版本：git reflog   git reset --hard 版本号（恢复之前版本）
+
+
+---------------------------------------------------------------------------------------
+git分支：
+
+查看分支：git branch  （目前所处在的分支）
+
+创建分支：git branch 分支名称
+
+切换分支：git checkout 分支名称
+
+分支合并：（可能产生冲突）
+
+        git merge 要合并的分支 （将A合并到B）  git merge A
+
+    注意：切换分支再合并
+
+创建分支并进入：git checkout -b ddz（项目名称）
+
+删除分支：
+    git branch -d 分支名称
+
+-------------------------------------------------------------------------------------
+github 推送代码步骤：
+
+
+推给仓库的步骤：
+1.给远程仓库取别名：
+   git remote add origin 远程仓库地址
+2.向远程推送代码
+  git push -u origin 分支
+
+
+
+
+1.   git remote add origin https://github.com/AIliuyixuan/-.git
+2.  git branch -M main
+3.  git push -u origin main
+
+
+
+
+
+
+从仓库取代码的步骤：
+     1.git clone 远程仓库地址
+
+切换分支：
+     2.git checkout 分支
+       git checkout -b dev (创建dev,并切换到dev)
+
+
+
+在公司进行开发：
+1.切换到dev分支再经行开发
+   git checkout dev 
+
+2.把master 分支合并到dev【仅一次】
+  git merge master
+
+3.修改代码
+
+4.提交代码
+ git add .
+git commit -m 'xx'
+git push origin dev
+
+
+回到家中继续写代码：
+1.切换dev分支经行开发
+ git checkout dev
+
+2.拉代码
+  git pull origin dev
+
+3.继续开发
+
+ 4.提交代码
+ git add .
+git commit -m 'xx'
+git push origin dev
+
+
+
+在公司继续进行开发：
+1.切换dev分支经行开发
+ git checkout dev
+
+2.拉代码
+  git pull origin dev
+
+3.继续开发
+
+ 4.提交代码
+ git add .
+git commit -m 'xx'
+git push origin dev
+
+
+------------------------
+开发完毕，要上线
+
+1.将dev分支合并到master ，经行上线
+git checkout master
+git merge dev
+git push origin master
+
+2.把dev分支也推送到远程
+git checkout dev
+git merge master
+git push origin dev
+
+
+
+----------------------------------------------------------------------
+使用git rebase压缩提交(commits) --- 使得提交记录变得简洁
+
+运行git rebase -i HEAD~x→ x 是需要从头开始压缩的数目，-i 表示交互模式
+
+按 i 进入vim的INSERT的输入模式
+
+然后输入 :wq或者 :x保存并退出
+
+运行 git push -f 更新新的commit(提交)
+
+
+-------------------------------------
+Beyond Compare 4 使用方法(快速解决冲突)：
+
+在git 中配置：
+
+git config --local merge.tool bc4
+
+git config --local mergetool.path "D:\Beyond Compare 4\Beyond Compare 4"
+
+git config --local mergetool.keepBackup false
+
+应用beyond compare 解决冲突
+git mergetool
+
+
+--------------------------------------------------------
+创建标签：
+git tag -a v1 -m "第一版"
+git push origin --tags
+
+----------------------------
+给开源软件共享代码：
+1、fork源代码
+     将别人源代码拷贝到我自己的远程仓库
+2.在自己得仓库修改代码
+
+3.给源代码的作者提交，修复bug的申请（push request）
+
+----------------------------------------------------------------
+其他补充点：
+配置：
+
+项目配置文件：项目/.git/config
+git confit  --local user.name '吴佩琦'
+git confit  --local user.email 'wupeiqi@qq.com'
+
+
+
+全局配置文件：~/.git/config
+git confit  --glocal user.name '吴佩琦'
+git confit  --glocal user.email 'wupeiqi@qq.com'
+
+系统配置文件：~/.gitconfig
+git confit  --system user.name '吴佩琦'
+git confit  --system user.email 'wupeiqi@qq.com'
+注意：需要root权限
+
+应用场景：
+git confit  --glocal user.name '吴佩琦'
+git confit  --glocal user.email 'wupeiqi@qq.com'
+
+git config --local merge.tool bc4
+
+git config --local mergetool.path "D:\Beyond Compare 4\Beyond Compare 4"
+
+git config --local mergetool.keepBackup false
+
+git remote add origin 地址 默认添加在本地配置文件中（--global）
+
+
+
+------------------------------------------------------------
+免密码登陆：
+原来的地址：https://github.com/AIliuyixuan/dbhot.git
+修改的地址：https://用户名：密码@github.com/AIliuyixuan/dbhot.git
+
+SSH实现：
+1.生成公钥和私钥(默认放在 ~/.ssh目录下，id_rsa.pub（公钥），id_rsa（私钥） )
+ssh-keygen
+
+1.提取公钥： cat ~/.ssh/id_rsa.pub
+2.拷贝公钥的内容，并设置到github中
+3.在git本地配置ssh地址
+git remote add origin git@github.com:AIliuyixuan/dbhot.git
+
+
+git自动管理凭证
+
+
+-----------------------------------
+git忽略文件
+让git不再管理当前目录下的某些文件
+ vim .gitignore
+
+*.h
+!a.h
+files/
+*py[c|a|d]
+更多参考：https://github.com/github/gitignore
+
+--------------------------------------------------------
+github任务管理相关
+issues  文档以及任务管理
+wiki 项目文档
+
+
+
+
+
+   
